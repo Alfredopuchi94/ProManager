@@ -21,16 +21,17 @@
 				<div class="col-lg-12"><hr></div><br>
 				<div class="row">
 					<div class="col-md-8 mx-auto">
-						<form class="form-horizontal" action="src/app_api/config/session.php" method="post" name="form_session">
-							<div id="form_message_usuario"></div>
+						 <form class="form-horizontal" action="php/session.php" method="post" name="form_session">
+							<div id="form_message_cliente"></div>
 							<div class="form-group">
 								<input
-									type="text"
+									type="email"
 									class="form-control"
 									name="email"
-									placeholder="email">
+									id="email_cliente"
+									placeholder="Email">
 									<div class="invalid-feedback">
-										El Email es invalido
+										EL email es invalido
 									</div>
 							</div>
 							<div class="form-group">
@@ -38,13 +39,14 @@
 									type="password"
 									class="form-control"
 									name="clave"
+									id="pass_cliente"
 									placeholder="Contraseña">
 									<div class="invalid-feedback">
-										la contraseña es invalida
+										la Contraseña es invalida
 										<ul>
-											<li>caracteres minimos 8.</li>
-											<li>debe contener al menos 1 letra mayúscula, 1 letra minúscula y 1 número</li>
-											<li>Puede contener caracteres especiales</li>
+											<li>Debe obtener al menos 8 caracteres</li>
+											<li>Debe tener al menos 1 letra mayuscula, 1 minuscula y 1 numero </li>
+											<li>puede tener caracteres especiales</li>
 										</ul>
 									</div>
 							</div>
@@ -64,7 +66,7 @@
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header">
-			<h5 class="modal-title" id="Usuario_recovery">Recovery Password</h5>
+			<h5 class="modal-title" id="Usuario_recovery">Recuperar Contraseña</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			  <span aria-hidden="true">&times;</span>
 			</button>
@@ -77,8 +79,8 @@
 					  </div>
 				  	</div>
 				  	<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Recovery</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						<button type="submit" class="btn btn-primary">Recuperar</button>
 				  	</div>
 				</form>
 
