@@ -38,7 +38,7 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="col-md-10 my-3" style="height: 3000px;">
+			<div class="col-md-10 my-3">
 				<div class="row">
 					<div class="col-md-12 pt-5">
 						<span class="fa fa-bar-chart fa-5x w-100 text-center"></span>
