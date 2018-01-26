@@ -9,7 +9,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-primary sticky-top bgnav justify-content-center">
-		<span class="navbar-brand mb-0 h1">Pro-Manager</span>
+		<p class="mb-0 title-5" style="color: white;">Sistema de Proveduria</p>
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
@@ -38,7 +38,7 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="col-md-10 my-3">
+			<div class="col-md-10 my-3" style="height: 3000px;">
 				<div class="row">
 					<div class="col-md-12 pt-5">
 						<span class="fa fa-bar-chart fa-5x w-100 text-center"></span>

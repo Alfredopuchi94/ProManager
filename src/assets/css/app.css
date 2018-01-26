@@ -12,3 +12,38 @@ body {
 .title-9{ font-size: .7rem; }
 
 .bgnav{	background-color: #0072C6;}
+
+.sidebar{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	padding: 0;
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 78px;
+	height: calc(100vh - 78px);
+	padding-top: .5rem;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.colorLetraMenu{
+	color: #333;
+}
+
+.colorLetraMenu:hover,
+.colorLetraMenu:hover > .colIconMenu {
+	color: #333;
+}
+
+.colIconMenu{
+	color: #999;
+	width: 16px;
+	height: 16px;
+}
