@@ -28,7 +28,7 @@
 									placeholder="Usuario">
 									<div class="invalid-feedback">
 										El usuario es invalido
-									</div><br>
+									</div>
 							</div>
 							<div class="form-group">
 								<input
@@ -40,7 +40,7 @@
 									<div class="invalid-feedback">
 										la contraseña es invalida
 										<ul>
-											<li>caracteres minimos 8</li>
+											<li>caracteres minimos 8.</li>
 											<li>debe contener al menos 1 letra mayúscula, 1 letra minúscula y 1 número</li>
 											<li>Puede contener caracteres especiales</li>
 										</ul>

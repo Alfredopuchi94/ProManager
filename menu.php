@@ -18,4 +18,4 @@
 			</form>
     	</ul>
   </div>
-</nav><br>
+</nav>
