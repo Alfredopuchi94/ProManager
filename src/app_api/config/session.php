@@ -1,22 +1,22 @@
 <?php 
 
-	session_start();
-	$e = $_REQUEST['email'];
-	$c = $_REQUEST['clave'];
+    session_start();
+    $u = $_REQUEST['user'];
+    $p = $_REQUEST['pass'];
 
-	$_SESSION['email'] = $e;
-    $_SESSION['clave'] = $c;
+    $_SESSION['user'] = $u;
+    $_SESSION['pass'] = $p;
 
     include('conexion.php');
 
-    $query=mysqli_query($conexion,"SELECT tipo FROM usuarios WHERE email= '$e' and clave = '$c'");
+    $query=mysqli_query($conexion,"SELECT rango FROM usuario WHERE user = '$u' and pass = '$p'");
 
     if ($reg=mysqli_fetch_array($query)) {
-    	$_SESSION['tipo'] = $reg['tipo'];
-    	header('Location: ../../../home.php');
+        $_SESSION['rango'] = $reg['rango'];
+        header('Location: ../modules/home.php');
     } else {
-    	session_destroy();
-    	header('Location: ../index.php');
+        session_destroy();
+        header('Location: ../../../index.php');
     }
 
 

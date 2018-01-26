@@ -1,3 +1,7 @@
+<?php
+session_start();
+session_destroy(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,26 +25,13 @@
 				<div class="col-lg-12"><hr></div><br>
 				<div class="row">
 					<div class="col-md-8 mx-auto">
-						 <form class="form-horizontal" action="php/session.php" method="post" name="form_session">
+						  <form class="form-horizontal" action="src/app_api/config/session.php" method="post" name="form_session">
 							<div id="form_message_cliente"></div>
 							<div class="form-group">
-								<input
-									type="email"
-									class="form-control"
-									name="email"
-									id="email_cliente"
-									placeholder="Email">
-									<div class="invalid-feedback">
-										EL email es invalido
-									</div>
+								<input type="text" class="form-control" name="user" id="user" placeholder="email">
 							</div>
 							<div class="form-group">
-								<input
-									type="password"
-									class="form-control"
-									name="clave"
-									id="pass_cliente"
-									placeholder="Contraseña">
+								<input type="password" class="form-control" name="pass" placeholder="Contraseña">
 									<div class="invalid-feedback">
 										la Contraseña es invalida
 										<ul>
@@ -51,7 +42,7 @@
 									</div>
 							</div>
 							<a href="#" data-toggle="modal" data-target="#email_recovery" class="text-left d-block mx-auto">Olvide mi contraseña</a><br>
-								<button type="submit" class="btn btn-primary btn-block w-50 mx-auto" style="background-color: #0072C6;"><span id="usuario_sub">Ingresar</span></button>
+								<input type="submit" class="btn btn-lg col-sm-12" value="Ingresar" style="background-color: #0072C6;">
 						</form>
 					<br><br></div>
 					<div class="title-9">
