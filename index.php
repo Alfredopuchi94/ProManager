@@ -9,7 +9,7 @@
 <body>
 <header>
 	<nav class="navbar navbar-primary bgnav justify-content-center">
-		<span class="navbar-brand mb-0 h1">Pro-Manager</span>
+		<p class="mb-0 title-5">Sistema de Proveduria</p>
 	</nav>
 </header><!-- /header -->
 	<div class="container">
@@ -17,6 +17,11 @@
 			<div class="col-md-8 offset-md-2 my-5">
 				<div class="row">
 					<div class="col-md-12">
+						<div class="panel-heading">
+						   <p class="panel-title title-6">
+						    	Inicio de sesión
+						   </p><br>
+						 </div>
 						<form id="form_login_usuario">
 							<div id="form_message_usuario"></div>
 							<div class="form-group">
@@ -50,6 +55,11 @@
 						</form> <br>
 						<a href="#" data-toggle="modal" data-target="#usuario_recovery" class="text-left d-block mx-auto">Olvide mi contraseña</a>
 					</div>
+					<div class="panel-heading title-8">
+						Aplicación web desarrollada por la Oficina de Apoyo Técnico Informático de la Dirección Administrativa Regional del Estado Zulia 
+						de la Dirección Ejecutiva de la Magistratura del Tribunal Supremo de Justicia.
+						<p>Todos los derechos reservados.</p>
+					</div>
 
 	<!-- Usuario Recovery -->
 	<div class="modal fade" id="Usuario_recovery" tabindex="-1" role="dialog" aria-labelledby="Usuario_recovery" aria-hidden="true">
@@ -62,25 +72,20 @@
 			</button>
 		  </div>
 				<form id="recovery_form_Usuario">
-			  <div class="modal-body">
-							<div class="form-group">
-							<input
-								type="usuario"
-								class="form-control"
-								name="usuario"
-								id="usuarioRC"
-								placeholder="usuario">
-								<div class="invalid-feedback">
-							   El usuario es invalido
-							  </div>
-						  </div>
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Recovery</button>
-			  </div>
+				 	 <div class="modal-body">
+						<div class="form-group">
+							<input type="usuario" class="form-control" name="usuario" id="usuarioRC" placeholder="usuario">
+							<div class="invalid-feedback">El usuario es invalido</div>
+					  </div>
+				  	</div>
+				  	<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Recovery</button>
+				  	</div>
 				</form>
-		</div>
+
+				
+				
 	  </div>
 	</div>
 		
@@ -91,3 +96,5 @@
 	<!-- <script src="./src/app_api/modules/Usuarioe/controller.js"></script> -->
 </body>
 </html>
+
+
