@@ -42,7 +42,7 @@ session_destroy();
 									</div>
 							</div>
 							<a href="#" data-toggle="modal" data-target="#email_recovery" class="text-left d-block mx-auto">Olvide mi contraseña</a><br>
-								<input type="submit" class="btn btn-lg col-sm-12" value="Ingresar" style="background-color: #0072C6;">
+								<input type="submit" class="btn btn-lg col-sm-12" value="Ingresar" style="color: white;background-color: #0072C6;">
 						</form>
 					<br><br></div>
 					<div class="title-9">
@@ -52,21 +52,21 @@ session_destroy();
 					</div>
 					
 
-	<!-- Usuario Recovery -->
-	<div class="modal fade" id="Usuario_recovery" tabindex="-1" role="dialog" aria-labelledby="Usuario_recovery" aria-hidden="true">
+	<!-- email Recovery -->
+	<div class="modal fade" id="email_recovery" tabindex="-1" role="dialog" aria-labelledby="email_recovery" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header">
-			<h5 class="modal-title" id="Usuario_recovery">Recuperar Contraseña</h5>
+			<h5 class="modal-title" id="email_recovery">Recuperar Contraseña</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			  <span aria-hidden="true">&times;</span>
 			</button>
 		  </div>
-				<form id="recovery_form_Usuario">
+				<form id="recovery_form_email">
 				 	 <div class="modal-body">
 						<div class="form-group">
-							<input type="usuario" class="form-control" name="usuario" id="usuarioRC" placeholder="usuario">
-							<div class="invalid-feedback">El usuario es invalido</div>
+							<input type="email" class="form-control" name="email" id="emailRC" placeholder="email">
+							<div class="invalid-feedback">El email es invalido</div>
 					  </div>
 				  	</div>
 				  	<div class="modal-footer">
@@ -81,10 +81,10 @@ session_destroy();
 	</div>
 		
 
-
+	<!-- 00000000000000000000 Script 00000000000000000000 -->
 	<script src="./src/assets/js/bootstrap.min.js"></script>
 	<script src="./src/assets/js/jquery-3.2.1.min.js"></script>
-	<!-- <script src="./src/app_api/modules/Usuarioe/controller.js"></script> -->
+	<!-- <script src="./src/app_api/modules/Usuario/controller.js"></script> -->
 </body>
 </html>
 
