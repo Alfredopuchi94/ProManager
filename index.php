@@ -28,7 +28,7 @@
 									placeholder="Usuario">
 									<div class="invalid-feedback">
 										El usuario es invalido
-									</div>
+									</div><br>
 							</div>
 							<div class="form-group">
 								<input
