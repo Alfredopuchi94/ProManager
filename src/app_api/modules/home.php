@@ -30,9 +30,23 @@
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-file-text colIconMenu"></span> Reportes</a>
 					  </li>
+<<<<<<< Updated upstream
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-user-circle-o colIconMenu"></span> Usuarios</a>
 					  </li>
+=======
+					  <li class="nav-item dropdown">
+				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user-circle-o colIconMenu"></span>
+				          Dropdown
+				        </a>
+				        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          <a class="dropdown-item" href="#">Action</a>
+				          <a class="dropdown-item" href="#">Another action</a>
+				          <div class="dropdown-divider"></div>
+				          <a class="dropdown-item" href="#">Something else here</a>
+				        </div>
+				      </li>
+>>>>>>> Stashed changes
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-sign-out colIconMenu"></span> Salir</a>
 					  </li>
@@ -49,5 +63,20 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< Updated upstream
+=======
+
+
+
+	
+
+
+
+
+
+	<!-- 00000000000000000000 Script 00000000000000000000 -->
+	<script src="../../assets/js/bootstrap.min.js"></script>
+	<script src="../../assets/js/jquery-3.2.1.min.js"></script>
+>>>>>>> Stashed changes
 </body>
 </html>

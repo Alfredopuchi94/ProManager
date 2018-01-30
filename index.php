@@ -85,6 +85,11 @@ session_destroy();
 	<script src="./src/assets/js/bootstrap.min.js"></script>
 	<script src="./src/assets/js/jquery-3.2.1.min.js"></script>
 	<!-- <script src="./src/app_api/modules/Usuario/controller.js"></script> -->
+	<script src="">
+		$('#myModal').on('shown.bs.modal', function () {
+  			$('#myInput').trigger('focus')
+		})
+	</script>
 </body>
 </html>
 
