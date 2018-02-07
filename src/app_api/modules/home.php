@@ -19,7 +19,7 @@
 					<h5>Menu</h5>
 					<ul class="nav flex-column">
 					  <li class="nav-item">
-					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-search colIconMenu"></span> Consulta</a>
+					    <a class="nav-link colorLetraMenu" href="buscar.php"><span class="fa fa-search colIconMenu"></span> Articulos</a>
 					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-arrow-down colIconMenu"></span> Entrada</a>
