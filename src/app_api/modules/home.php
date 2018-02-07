@@ -19,7 +19,7 @@
 					<h5>Menu</h5>
 					<ul class="nav flex-column">
 					  <li class="nav-item">
-					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-search colIconMenu"></span> Consulta</a>
+					    <a class="nav-link colorLetraMenu" href="buscar.php"><span class="fa fa-search colIconMenu"></span> Articulos</a>
 					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-arrow-down colIconMenu"></span> Entrada</a>
@@ -76,7 +76,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <button type="button" class="btn btn-primary">Save change</button>
 	      </div>
 	    </div>
 	  </div>

@@ -18,17 +18,4 @@ if ($_REQUEST['id'] =="Usuarios") { //datos de formulario de usuarios
 		}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
  ?>
