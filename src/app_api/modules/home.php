@@ -1,3 +1,7 @@
+<?php session_start();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +14,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-primary sticky-top bgnav justify-content-center">
-		<p class="mb-0 title-5" style="color: white;">Sistema de Proveduria</p>
+		<p class="mb-0 title-5" style="color: white;">Sistema de Proveduria <br> <div class="small bienvenidoSmall">Bienvenido <?php echo ucfirst(strtolower($_SESSION["nombre"])); ?></div></p>
 	</nav>
 	<div class="container-fluid">
 		<div class="row">

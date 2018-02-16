@@ -26,8 +26,8 @@ body {
 .sidebar-sticky{
 	position: -webkit-sticky;
 	position: sticky;
-	top: 78px;
-	height: calc(100vh - 78px);
+	top: 99px;
+	height: calc(100vh - 99px);
 	padding-top: .5rem;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -46,4 +46,11 @@ body {
 	color: #999;
 	width: 16px;
 	height: 16px;
+}
+
+.bienvenidoSmall{
+	display: block;
+    width: 100%;
+    text-align: center;
+    color: white;
 }
