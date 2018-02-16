@@ -28,10 +28,10 @@ session_destroy();
 						  <form class="form-horizontal" action="src/app_api/config/session.php" method="post" name="form_session">
 							<div id="form_message_cliente"></div>
 							<div class="form-group">
-								<input type="text" class="form-control" name="user" id="user" placeholder="email">
+								<input type="text" class="form-control" name="LOGIN" id="LOGIN" placeholder="LOGIN">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" name="pass" placeholder="Contraseña">
+								<input type="password" class="form-control" name="CONTRASENA" placeholder="Contraseña">
 									<div class="invalid-feedback">
 										la Contraseña es invalida
 										<ul>
