@@ -1,5 +1,6 @@
 <?php
 session_start();
+// print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -178,28 +179,21 @@ session_start();
 													<th scope="col" width="10%">Cantidad</th>
 												</tr>
 											</thead>
-											<tbody>
+											<tbody id="contenedorArt">
+												<?php 
+													$datos = $_SESSION["articulos"];
+													for ($i=0; $i < count($datos); $i++) { 
+												?>
 												<tr>
-													<th scope="row">MO53</th>
-													<td id="aux">MATERIAL DE OFICINA</td>
-													<td>RESMA DE PAPEL OFICIO</td>
-													<td>UNIDAD</td>
+													<th scope="row"><?php echo $datos[$i]["id"] ?></th>
+													<td><?php echo $datos[$i]["rubro"] ?></td>
+													<td><?php echo $datos[$i]["articulo"] ?></td>
+													<td><?php echo $datos[$i]["unidad"] ?></td>
 													<td><input type="number" class="form-control"></td>
 												</tr>
-												<tr>
-													<th scope="row">CO31</th>
-													<td>INSUMOS DE COMPUTACION</td>
-													<td>REGULADOR/VOLTAJE 600 ZUHIPOINT</td>
-													<td>UNIDAD</td>
-													<td><input type="number" class="form-control"></td>
-												</tr>
-												<tr>
-													<th scope="row">EL7</th>
-													<td>ELECTRICIDAD</td>
-													<td>LAMPARA DE 32W</td>
-													<td>GALON X 4 LTS.</td>
-													<td><input type="number" class="form-control"></td>
-												</tr>
+												<?php
+													}
+												?>
 											</tbody>
 										</table>
 										</form>
@@ -269,7 +263,7 @@ session_start();
 									  +'<td id="existenciaArt">'+ui.item.existenciaArticulo+'</td>'
 									  +'<td>'
 									  
-									  +'<a href=""  class="btn btn-success btn-sm" role="button"><span class="fa fa-plus-circle"></span></a>'
+									  +'<a href="javascript:agregarSession()" class="btn btn-success btn-sm" role="button"><span class="fa fa-plus-circle"></span></a>'
 									  +'</td>'
 									+'</tr>'
 								  +'</tbody>'
@@ -283,6 +277,27 @@ session_start();
             });
         });
 
+        function agregarSession() {
+        	if (existencia>0) {
+            	$.ajax({
+	        		url: 'agregarArtSession.php',
+	        		type: 'POST',
+	        		data: "id="+id
+	        	})
+	        	.done(function(data) {
+	        			$("#contenedorArt").append(data);
+	        	})
+	        	.fail(function() {
+	        		console.log("error");
+	        	})
+	        	.always(function() {
+	        		console.log("complete");
+	        	});
+	        	
+        	}else{
+        		alert("No hay existencia");
+        	}
+        }
 	</script>
 </body>
 </html>

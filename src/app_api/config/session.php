@@ -19,17 +19,13 @@
 
     $query=sqlsrv_query($conn,$sql);
     
-<<<<<<< HEAD
-    //echo "$sql";
-    
-=======
->>>>>>> master
     if ($reg=sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
         
         $_SESSION['usuario'] = $reg["LOGIN"];
         $_SESSION["nombre"] = $reg["P_NOMBRE"];
         $_SESSION['idUsuario'] = $reg["ID_EMPLEADO"];
         $_SESSION['idDependencia'] = $reg["ID_DEPENDENCIA"];
+        $_SESSION["articulos"] = array();
 
         //print_r($_SESSION);
 
