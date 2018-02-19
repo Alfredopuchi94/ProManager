@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="../../assets/js/app.js">
 	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../assets/css/jquery-ui.min.css">
 </head>
 <body>
 	<nav class="navbar navbar-primary sticky-top bgnav justify-content-center">
@@ -144,14 +145,15 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text" id="basic-addon3">Buscar</span> 
 											</div>
-											<input type="text" class="form-control">
+											<input id="buscarProducto" type="text" class="form-control">
 											<div class="input-group-append">
 												<button class="btn btn-outline-secondary" type="button">Guardar</button>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-12">
-										<table class="table table-hover">
+										<div id="resultados"></div>
+										<table class="table table-hover small">
 											<thead>
 												<tr>
 													<th scope="col" width="10%">Código</th>
@@ -164,7 +166,7 @@
 											<tbody>
 												<tr>
 													<th scope="row">MO53</th>
-													<td>MATERIAL DE OFICINA</td>
+													<td id="aux">MATERIAL DE OFICINA</td>
 													<td>RESMA DE PAPEL OFICIO</td>
 													<td>UNIDAD</td>
 													<td><input type="number" class="form-control"></td>
@@ -204,9 +206,11 @@
 		</div>
 	</div>
 	<script src="../../assets/js/jquery-3.2.1.min.js"></script>
+	<script src="../../assets/js/jquery-ui.min.js"></script>
 	<script src="../../assets/js/bootstrap.js"></script>
 	<script>
 		var aux = true;
+       	var monto = 0;
 
 		$("#ContProdNuevo").slideUp('fast');
 
@@ -221,6 +225,49 @@
 				$("#ContProdNuevo").slideUp(400);
 			}
 		});
+
+        $(function(){
+
+            $('#buscarProducto').autocomplete({
+                source: 'ajax.php',
+                select: function(event,ui){
+                    $('#resultados').slideUp('slow',function(){
+                        $('#resultados').html(
+                            '<table class="table table-hover table-bordered small">'
+							+'<colgroup> <col class="col-xs-1"> <col class="col-xs-5"><col class="col-xs-2"><col class="col-xs-1"><col class="col-xs-1"><col class="col-xs-2"></colgroup>'
+								  +'<tbody>'
+								 +'<thead>'
+									+'<tr>'
+									  +'<th>Codigo</th>'
+									 +'<th>Rubro</th>'
+									  +'<th>Nombre</th>'
+									  +'<th>Unidad</th>'
+									  +'<th>Existencia</th>'
+									  +'<th>Accion</th>'
+									+'</tr>'
+								  +'</thead>'
+									+'<tr>'
+									  +'<th>'+ui.item.idArticulo+'</th>'
+									  +'<td>'+ui.item.rubro+'</td>'
+									  +'<td>'+ui.item.value+'</td>'
+									  +'<td>'+ui.item.unidad+'</td>'
+									  +'<td id="existenciaArt">'+ui.item.existenciaArticulo+'</td>'
+									  +'<td>'
+									  
+									  +'<a href=""  class="btn btn-success btn-sm" role="button"><span class="fa fa-plus-circle"></span></a>'
+									  +'</td>'
+									+'</tr>'
+								  +'</tbody>'
+								+'</table>'
+                        );
+                    });
+                    $('#resultados').slideDown('slow');
+                existencia = ui.item.existenciaArticulo;
+                id = ui.item.idArticulo;
+                }
+            });
+        });
+
 	</script>
 </body>
 </html>
