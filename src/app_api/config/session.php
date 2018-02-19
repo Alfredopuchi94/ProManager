@@ -13,8 +13,6 @@
 
     $query=sqlsrv_query($conn,$sql);
     
-    echo "$sql";
-    
     if ($reg=sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
         header('Location: ../modules/home.php');
     } else {
