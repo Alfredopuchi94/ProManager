@@ -173,10 +173,11 @@ session_start();
 											<thead>
 												<tr>
 													<th scope="col" width="10%">Código</th>
-													<th scope="col" width="30%">Rubro</th>
-													<th scope="col" width="35%">Nombre</th>
-													<th scope="col" width="15%">Unidad</th>
+													<th scope="col" width="15%">Rubro</th>
+													<th scope="col" width="30%">Nombre</th>
+													<th scope="col" width="10%">Unidad</th>
 													<th scope="col" width="10%">Cantidad</th>
+													<th scope="col" width="20%">Accion</th>
 												</tr>
 											</thead>
 											<tbody id="contenedorArt">
@@ -190,6 +191,10 @@ session_start();
 													<td><?php echo $datos[$i]["articulo"] ?></td>
 													<td><?php echo $datos[$i]["unidad"] ?></td>
 													<td><input type="number" class="form-control"></td>
+													<td>
+														<button type="button" id="edit" class="btn btn-info"><span class="fa fa-pencil"></span></button>
+														<button type="button" class="btn btn-danger delete"><span class="fa fa-trash"></span></button>
+													</td>
 												</tr>
 												<?php
 													}
@@ -298,6 +303,11 @@ session_start();
         		alert("No hay existencia");
         	}
         }
+	</script>
+	<script>
+		$('.table tbody').on('click','.delete',function(){
+			$(this).closest('tr').remove();
+		});
 	</script>
 </body>
 </html>
