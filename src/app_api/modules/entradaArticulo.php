@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +13,10 @@
 	<link rel="stylesheet" href="../../assets/css/jquery-ui.min.css">
 </head>
 <body>
+	<?php 
+	include "../config/conexion.php";
+
+	 ?>
 	<nav class="navbar navbar-primary sticky-top bgnav justify-content-center">
 		<p class="mb-0 title-5" style="color: white;">Sistema de Proveduria</p>
 	</nav>
@@ -68,50 +75,58 @@
 										    <input type="radio" name="options" id="option2" autocomplete="off"> Articulo Nuevo
 										  </label>
 										</div>
-										<form id="ContProdNuevo">
+										<form id="formularioEntradaNuevo" action="../config/datos.php" method="post">
 										  <div class="form-row">
 										  	<div class="form-group col-md-3">
 										      <label for="inputState">Rubro</label>
-										      <select id="inputState" class="form-control">
-										        <option selected>ARTICULOS DE LIMPIEZA</option>
-										        <option>CARATULAS Y FICHAS</option>
-										        <option>ELECTRICIDAD</option>
-										        <option>FERRETERIA</option>
-										        <option>INSUMOS DE COMPUTACION</option>
+										      <select name="id_rubro" id="inputState" class="form-control">
+										        <option disable selected>Seleccione Rubro</option>
+										       <?php
+										        $sql = "SELECT * FROM SC_PROVEDURIA.T_RUBROS";
+
+										         $query=sqlsrv_query($conn,$sql); 
+
+													while ($reg=sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+
+			  										echo '<option value="'.$reg["ID_RUBRO"].'">'.$reg['NOMBRE_RUBRO'].'</option>'; 
+												} ?>
 										      </select>
-										    </div>
-										    <div class="form-group col-md-3">
-										      <label for="inputEmail4">Codigo</label>
-										      <input type="email" class="form-control" id="inputEmail4" disabled="">
 										    </div>
 										    <div class="form-group col-md-6">
 										      <label for="inputEmail4">Descripcion</label>
-										      <input type="email" class="form-control" id="inputEmail4">
+										      <input name="nombre" type="text" class="form-control" id="inputEmail4">
 										    </div>
 										  </div>
 										  <div class="form-row">
 										  	<div class="form-group col-md-3">
 										      <label for="inputState">Unidad</label>
-										      <select id="inputState" class="form-control">
-										        <option selected>UNIDAD</option>
-										        <option>CAJA</option>
-										        <option>BOLSA</option>
-										        <option>METRO</option>
+										      <select name="id_unidad" id="inputState" class="form-control">
+										        <option disable selected>Seleccione la unidad</option>
+										       <?php
+										        $sql = "SELECT * FROM SC_PROVEDURIA.T_UNIDADES";
+
+										         $query=sqlsrv_query($conn,$sql); 
+
+													while ($reg=sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+
+			  										echo '<option value="'.$reg["ID_UNIDAD"].'">'.$reg['DESCRIPCION_UNIDAD'].'</option>'; 
+												} ?>
 										      </select>
 										    </div>
 										    <div class="form-group col-md-3">
 										      <label for="inputCity">Existencia</label>
-										      <input type="text" class="form-control" id="inputCity">
+										      <input name="existencia" type="text" class="form-control" id="inputCity">
 										    </div>
 										    <div class="form-group col-md-3">
 										      <label for="inputZip">Minimo</label>
-										      <input type="text" class="form-control" id="inputZip">
+										      <input name="minimo" type="text" class="form-control" id="inputZip">
 										    </div>
 										    <div class="form-group col-md-3">
 										      <label for="inputZip">Costo</label>
-										      <input type="text" class="form-control" id="inputZip">
+										      <input name="costo" type="text" class="form-control" id="inputZip">
 										    </div>
-										    <button type="button" class="btn btn-primary d-block m-auto">Agregar artículo</button>
+										    	<input type="hidden" name="id" value="formularioEntradaNuevo">
+										    <button type="submit" class="btn btn-primary d-block m-auto">Agregar artículo</button>
 										  </div>
 										</form>
 									</div>
@@ -212,17 +227,17 @@
 		var aux = true;
        	var monto = 0;
 
-		$("#ContProdNuevo").slideUp('fast');
+		$("#formularioEntradaNuevo").slideUp('fast');
 
 		$("#prodNuevo").click(function() {
 			if (!$("#option2:checked").val() == true) {
-				$("#ContProdNuevo").slideDown(400);
+				$("#formularioEntradaNuevo").slideDown(400);
 			}
 		});
 
 		$("#prodExistente").click(function() {
 			if (!$("#option1:checked").val() == true) {
-				$("#ContProdNuevo").slideUp(400);
+				$("#formularioEntradaNuevo").slideUp(400);
 			}
 		});
 

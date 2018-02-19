@@ -19,8 +19,11 @@
 
     $query=sqlsrv_query($conn,$sql);
     
+<<<<<<< HEAD
     //echo "$sql";
     
+=======
+>>>>>>> master
     if ($reg=sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
         
         $_SESSION['usuario'] = $reg["LOGIN"];
