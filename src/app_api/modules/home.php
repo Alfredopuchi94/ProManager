@@ -29,7 +29,7 @@
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-arrow-down colIconMenu"></span> Entrada</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-arrow-up colIconMenu"></span> Salida</a>
+					    <a class="nav-link colorLetraMenu" href="salidaArticulo.php"><span class="fa fa-arrow-up colIconMenu"></span> Salida</a>
 					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-file-text colIconMenu"></span> Reportes</a>

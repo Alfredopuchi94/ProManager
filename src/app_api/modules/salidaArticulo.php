@@ -1,3 +1,6 @@
+<?php // Se para la variable de session para que pueda ser utilizada
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,10 @@
 	<link rel="stylesheet" href="../../assets/css/font-awesome.min.css">
 </head>
 <body>
+	<?php 
+	  include "../config/conexion.php";
+
+	 ?>
 	<nav class="navbar navbar-primary sticky-top bgnav justify-content-center">
 		<p class="mb-0 title-5" style="color: white;">Sistema de Proveduria</p>
 	</nav>
@@ -22,7 +29,7 @@
 					    <a class="nav-link colorLetraMenu" href="buscar.php"><span class="fa fa-search colIconMenu"></span> Articulos</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link colorLetraMenu" href="entradaArticulo"><span class="fa fa-arrow-down colIconMenu"></span> Entrada</a>
+					    <a class="nav-link colorLetraMenu" href="entradaArticulo.php"><span class="fa fa-arrow-down colIconMenu"></span> Entrada</a>
 					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-arrow-up colIconMenu"></span> Salida</a>
@@ -63,43 +70,39 @@
 									</div>
 									<div class="col-md-10 offset-md-1 pt-1">
 										<form>
-										  <div class="form-row">
-										    <div class="col-md-4 mb-3">
-										      <label for="validationCustom01">N° de factura</label>
-										      <input type="text" class="form-control" id="validationCustom01" required disabled="">
+										  <div class="row">
+										    <div class=" input-group col-md-3 mb-0 ml-0">
+										      <label class="mr-3">Fecha: </label><br>
+										      <input name="fecha" class="form-control" id="validationCustom01" disabled required value="<?=date('m/d/Y');?>">
 										    </div>
-										    <div class="col-md-4 mb-3">
-										      <label for="validationCustom01">Fecha</label>
-										      <input type="text" class="form-control" id="validationCustom01" required>
+										  	</div>
+								</div>
+										  	<div class="row">
+											  	<div class="form-group col-md-11 ml-5">
+											      <p class="text-center" for="inputState">Dependencia</p>
+											      <select id="inputState" class="form-control" width="100%">
+											        <option disable selected>Seleccione la dependencia</option>
+											       <?php
+											       // Se llena el <optio> de los rubros con la info de la base de datos
+
+											        $sql = "SELECT * FROM SC_COMUN.T_DEPENDENCIAS";
+
+											         $query=sqlsrv_query($conn,$sql); 
+
+														while ($reg=sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+
+				  										echo '<option value="'.$reg["ID_DEPENDENCIA"].'">'.$reg['DESCRIPCION'].'</option>'; 
+													} ?>
+											      </select>
+											    </div>
 										    </div>
-										    <div class="col-md-4 mb-3">
-											    <label for="validationCustomUsername">Nro de Oficio</label>
-										        <input type="text" class="form-control" id="validationCustomUsername" required>
-										    </div>
-										  </div>
-										  <div class="form-row">
-										  	<div class="form-group col-md-11">
-										      <label for="inputState">Dependencia</label>
-										      <select id="inputState" class="form-control">
-										        <option selected>ARTICULOS DE LIMPIEZA</option>
-										        <option>CARATULAS Y FICHAS</option>
-										        <option>ELECTRICIDAD</option>
-										        <option>FERRETERIA</option>
-										        <option>INSUMOS DE COMPUTACION</option>
-										      </select>
-										    </div>
-										    <div class="col-md-1">
-										    	<label for="validationCustomUsername">Código</label>
-										        <input type="text" class="form-control" id="validationCustomUsername" disabled="">
-										    </div>
-										  </div>
-										  <div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon3">Buscar</span> 
-											</div>
-											<input type="text" class="form-control">
-											<div class="input-group-append">
-												<button class="btn btn-outline-secondary" type="button">Guardar</button>
+										  
+										  <div class="input-group mx-auto col-md-8 mb-3">
+											<div class="input-group mb-3">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="basic-addon3">Buscar</span> 
+												</div>
+												<input id="buscarProducto" type="text" class="form-control">
 											</div>
 										</div>
 									</div>
@@ -107,7 +110,6 @@
 										<table class="table table-hover" style="font-size: 0.9rem;">
 											<thead>
 												<tr>
-													<th scope="col">Código</th>
 													<th scope="col">Descripcion</th>
 													<th scope="col">Unidad</th>
 													<th scope="col">Cantidad</th>
@@ -119,39 +121,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<th scope="row">MO53</th>
-													<td>REGULADOR/VOLTAJE 600 ZUHIPOINT</td>
-													<td>UNIDAD</td>
-													<td>20</td>
-													<td>100</td>
-													<td>2</td>
-													<td>18</td>
-													<td>500000</td>
-													<td>1000000</td>
-												</tr>
-												<tr>
-													<th scope="row">CO31</th>
-													<td>REGULADOR/VOLTAJE 600 ZUHIPOINT</td>
-													<td>UNIDAD</td>
-													<td>20</td>
-													<td>100</td>
-													<td>2</td>
-													<td>18</td>
-													<td>500000</td>
-													<td>1000000</td>
-												</tr>
-												<tr>
-													<th scope="row">EL7</th>
-													<td>REGULADOR/VOLTAJE 600 ZUHIPOINT</td>
-													<td>UNIDAD</td>
-													<td>20</td>
-													<td>100</td>
-													<td>2</td>
-													<td>18</td>
-													<td>500000</td>
-													<td>1000000</td>
-												</tr>
+												
 											</tbody>
 										</table>
 										</form>
@@ -190,6 +160,7 @@
 				$("#ContProdNuevo").slideUp(400);
 			}
 		});
+
 	</script>
 </body>
 </html>
