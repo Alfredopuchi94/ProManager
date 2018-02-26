@@ -1,6 +1,5 @@
-<?php
+<?php // Se para la variable de session para que pueda ser utilizada
 session_start();
-// print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,18 +50,6 @@ session_start();
 			<div class="col-md-10 my-3">
 				<div class="row">
 					<div class="col-md-12">
-						<ul class="nav nav-tabs" id="myTab" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Entrada Nueva</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Buscar Entrada</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-							</li>
-						</ul>
-
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 								<div class="row">
@@ -83,13 +70,15 @@ session_start();
 										      <select name="id_rubro" id="inputState" class="form-control">
 										        <option disable selected>Seleccione Rubro</option>
 										       <?php
-										        $sql = "SELECT * FROM SC_PROVEDURIA.T_RUBROS";
+										       // Se llena el <optio> de los rubros con la info de la base de datos
 
-										         $query=sqlsrv_query($conn,$sql); 
+										        $sql1 = "SELECT * FROM SC_PROVEDURIA.T_RUBROS";
 
-													while ($reg=sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+										         $query1=sqlsrv_query($conn,$sql); 
 
-			  										echo '<option value="'.$reg["ID_RUBRO"].'">'.$reg['NOMBRE_RUBRO'].'</option>'; 
+													while ($reg1=sqlsrv_fetch_array($query1, SQLSRV_FETCH_ASSOC)) { 
+
+			  										echo '<option value="'.$reg1["ID_RUBRO"].'">'.$reg1['NOMBRE_RUBRO'].'</option>'; 
 												} ?>
 										      </select>
 										    </div>
@@ -104,6 +93,8 @@ session_start();
 										      <select name="id_unidad" id="inputState" class="form-control">
 										        <option disable selected>Seleccione la unidad</option>
 										       <?php
+										       // Se llena el <option> de las unidades con la info de la base de datos
+
 										        $sql = "SELECT * FROM SC_PROVEDURIA.T_UNIDADES";
 
 										         $query=sqlsrv_query($conn,$sql); 
@@ -136,25 +127,20 @@ session_start();
 										<hr>
 									</div>
 									<div class="col-md-10 offset-md-1 pt-1">
-										<form>
+										<form id="formularioE" method="get" action="agregarEntrada.php">
 										  <div class="form-row">
 										    <div class="col-md-4 mb-3">
-										      <label for="validationCustom01">N° de factura</label>
-										      <input type="text" class="form-control" id="validationCustom01" required>
-										    </div>
-										    <div class="form-group col-md-4">
-										      <label for="inputState">Proveedor</label>
-										      <select id="inputState" class="form-control">
-										        <option selected>ARTICULOS DE LIMPIEZA</option>
-										        <option>CARATULAS Y FICHAS</option>
-										        <option>ELECTRICIDAD</option>
-										        <option>FERRETERIA</option>
-										        <option>INSUMOS DE COMPUTACION</option>
-										      </select>
+										      <label for="nroFactura">N° de factura</label>
+										      <input type="text" class="form-control" id="nroFactura" required>
 										    </div>
 										    <div class="col-md-4 mb-3">
-											    <label for="validationCustomUsername">Total</label>
-										        <input type="text" class="form-control" id="validationCustomUsername" required>
+										      <label for="validationCustom01">Proveedor</label>
+										      <input type="text" class="form-control" id="buscarProveedor" required>
+										      <input id="proveedor_oculto" value="0" type="hidden" name="id_proveedor">
+										    </div>
+										    <div class="col-md-4 mb-3">
+											    <label for="totalFactura">Fecha de Factura</label>
+										        <input type="date" class="form-control" id="totalFactura" required>
 										    </div>
 										  </div>
 										  <div class="input-group mb-3">
@@ -162,9 +148,6 @@ session_start();
 												<span class="input-group-text" id="basic-addon3">Buscar</span> 
 											</div>
 											<input id="buscarProducto" type="text" class="form-control">
-											<div class="input-group-append">
-												<button class="btn btn-outline-secondary" type="button">Guardar</button>
-											</div>
 										</div>
 									</div>
 									<div class="col-md-12">
@@ -182,25 +165,31 @@ session_start();
 											</thead>
 											<tbody id="contenedorArt">
 												<?php 
+													// foreach que recorre la variable de session "articulos" que es donde se guardan los articulos que van siendo agregados a la entrada
+
 													$datos = $_SESSION["articulos"];
-													for ($i=0; $i < count($datos); $i++) { 
+													foreach ($datos as $key => $value) {
 												?>
 												<tr>
-													<th scope="row"><?php echo $datos[$i]["id"] ?></th>
-													<td><?php echo $datos[$i]["rubro"] ?></td>
-													<td><?php echo $datos[$i]["articulo"] ?></td>
-													<td><?php echo $datos[$i]["unidad"] ?></td>
-													<td><input type="number" class="form-control"></td>
+													<th class="idDato" scope="row"><?php echo $value["id"] ?></th>
+													<td><?php echo $value["rubro"] ?></td>
+													<td><?php echo $value["articulo"] ?></td>
+													<td><?php echo $value["unidad"] ?></td>
+													<td><input value="1" min="1" name="valor<?php echo $value["id"] ?>" type="number" class="form-control cantArt"></td>
 													<td>
 														<button type="button" id="edit" class="btn btn-info"><span class="fa fa-pencil"></span></button>
-														<button type="button" class="btn btn-danger delete"><span class="fa fa-trash"></span></button>
+														<button id="eliminarArt" type="button" class="btn btn-danger delete"><span class="fa fa-trash"></span></button>
 													</td>
+
+													
+
 												</tr>
 												<?php
-													}
+													} // Termina el foreach donde se muestran los articulos que van a ser agregados a la entrada
 												?>
 											</tbody>
 										</table>
+										<button id="enviarEntrada" type="submit" class="btn btn-primary d-block m-auto">Guardar entrada</button>
 										</form>
 									</div>
 								</div>
@@ -223,31 +212,31 @@ session_start();
 	<script src="../../assets/js/jquery-ui.min.js"></script>
 	<script src="../../assets/js/bootstrap.js"></script>
 	<script>
-		var aux = true;
-       	var monto = 0;
 
-		$("#formularioEntradaNuevo").slideUp('fast');
+		$("#formularioEntradaNuevo").slideUp('fast'); // Esconde el formulario para agregar nuevos productos.
 
-		$("#prodNuevo").click(function() {
+		$("#prodNuevo").click(function() { // Muestra el formulario al darle click a Articulo Nuevo
 			if (!$("#option2:checked").val() == true) {
 				$("#formularioEntradaNuevo").slideDown(400);
 			}
 		});
 
-		$("#prodExistente").click(function() {
+		$("#prodExistente").click(function() { // Esconde el formulario al darle click a Articulo Existente
 			if (!$("#option1:checked").val() == true) {
 				$("#formularioEntradaNuevo").slideUp(400);
 			}
 		});
 
+		/*************** AUTOCOMPLETAR *****************/
+
         $(function(){
 
-            $('#buscarProducto').autocomplete({
-                source: 'ajax.php',
-                select: function(event,ui){
-                    $('#resultados').slideUp('slow',function(){
-                        $('#resultados').html(
-                            '<table class="table table-hover table-bordered small">'
+	        $('#buscarProducto').autocomplete({ // Funcion para buscar los articulos en la base de datos
+	            source: 'ajax.php',
+	            select: function(event,ui){
+	                $('#resultados').slideUp('slow',function(){
+	                    $('#resultados').html(
+	                        '<table class="table table-hover table-bordered small">'
 							+'<colgroup> <col class="col-xs-1"> <col class="col-xs-5"><col class="col-xs-2"><col class="col-xs-1"><col class="col-xs-1"><col class="col-xs-2"></colgroup>'
 								  +'<tbody>'
 								 +'<thead>'
@@ -273,24 +262,39 @@ session_start();
 									+'</tr>'
 								  +'</tbody>'
 								+'</table>'
-                        );
-                    });
-                    $('#resultados').slideDown('slow');
-                existencia = ui.item.existenciaArticulo;
-                id = ui.item.idArticulo;
-                }
-            });
+	                    );
+	                });
+	                $('#resultados').slideDown('slow');
+	            existencia = ui.item.existenciaArticulo;
+	            id = ui.item.idArticulo;
+	            }
+	        });
+
+	        $('#buscarProveedor').autocomplete({ // Funcion para buscar los proveedores en la base de datos
+	            source: 'ajax2.php',
+	            select: function(event,ui){
+	                $('#proveedor_oculto').val(ui.item.idProveedor);
+	            }
+	        });
         });
 
+        //////////////////////////// AUTOCOMPLETAR /////////////////////////////////
+
+        /****************************** AGREGAR ARTICULOS A LA SESSION ******************************/
+
         function agregarSession() {
-        	if (existencia>0) {
+        	// if (existencia>0) {
             	$.ajax({
 	        		url: 'agregarArtSession.php',
 	        		type: 'POST',
 	        		data: "id="+id
 	        	})
 	        	.done(function(data) {
+	        		if (data == "existe") {
+	        			alert("Ya agregaste ese articulo");
+	        		}else{
 	        			$("#contenedorArt").append(data);
+	        		}
 	        	})
 	        	.fail(function() {
 	        		console.log("error");
@@ -299,15 +303,90 @@ session_start();
 	        		console.log("complete");
 	        	});
 	        	
-        	}else{
-        		alert("No hay existencia");
-        	}
+        	// }else{
+        	// 	alert("No hay existencia");
+        	// }
         }
-	</script>
-	<script>
-		$('.table tbody').on('click','.delete',function(){
+
+        ////////////////////////////// AGREGAR ARTICULOS A LA SESSION //////////////////////////////
+
+        /****************************** ENVIAR DATOS DEL FORMULARIO ******************************/
+
+        $("#enviarEntrada").click(function(event) {
+
+        	var arrayArt = new Array();
+			var nuevoArray = new Object();
+
+        	arrayArt["factura"] = $("#nroFactura").val();
+        	arrayArt["idProveedor"] = $("#proveedor_oculto").attr('value');
+        	arrayArt["total"] = $("#totalFactura").val();
+        	arrayArt.cantArt = new Array();
+        	arrayArt.idArt = new Array();
+
+
+
+        	$(".cantArt").each(function(index, el) {
+        		arrayArt.cantArt[index] = $(this).val();
+        	});
+
+        	$(".idDato").each(function(index, el) {
+        		arrayArt.idArt[index] = $(this).text();
+        	});
+
+
+
+			nuevoArray.factura = arrayArt["factura"];
+			nuevoArray.idProveedor = arrayArt["idProveedor"];
+			nuevoArray.total = arrayArt["total"];
+			nuevoArray.cantArt = arrayArt.cantArt;
+			nuevoArray.idArt = arrayArt.idArt;
+			nuevoArray.causaAccion = 2;
+			nuevoArray.tipoAccion = 1;
+
+        	$.ajax({
+        		url: 'agregarEntrada.php',
+        		type: 'POST',
+        		data: nuevoArray,
+        	})
+        	.done(function() {
+        		alert("Entrada agregada.")
+        		location.reload();
+        		console.log("success");
+        		return false;
+        	})
+        	.fail(function() {
+        		console.log("error");
+        	})
+        	//alert(arrayArt.idProveedor);
+        	return false;
+        	
+        });
+
+        ////////////////////////////// ENVIAR DATOS DEL FORMULARIO //////////////////////////////
+
+        /****************************** ELIMINAR ARTICULOS DE LA SESSION ******************************/
+
+        $('.table tbody').on('click','.delete',function(){
 			$(this).closest('tr').remove();
+			
+			var id = $(this).parent("td").parent("tr").children('th').text();
+
+			$.ajax({
+				url: 'eliminarArtSession.php',
+				type: 'POST',
+				data: "id="+id,
+			})
+			.done(function() {
+
+				console.log("success");
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			
 		});
+
+		////////////////////////////// ELIMINAR ARTICULOS DE LA SESSION //////////////////////////////
 	</script>
 </body>
 </html>

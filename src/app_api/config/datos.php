@@ -11,10 +11,9 @@
 		$id_unidad = $_REQUEST['id_unidad'];
 		
 
-		// $validar = mysqli_query($conexion, "SELECT nombrePersona FROM registronuevo");
 		$sql = "INSERT INTO SC_PROVEDURIA.T_ARTICULOS (NOMBRE_ARTICULO, EXISTENCIA_ARTICULO, MINIMO_ARTICULO, COSTO_UNIDAD_ARTICULO, ID_RUBRO, ID_UNIDAD) VALUES ('$nombre', '$existencia', '$minimo', '$costo', '$id_rubro', '$id_unidad')";
 
-		echo "$sql";
+		//echo "$sql";
 
 		$insertar = sqlsrv_query($conn, $sql);
 			

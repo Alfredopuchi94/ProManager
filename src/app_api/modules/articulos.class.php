@@ -19,7 +19,7 @@ class Articulos{
 			$datos[] = array("idArticulo" => $row['ID_ARTICULO'],"value" => $row['NOMBRE_ARTICULO'],"existenciaArticulo" => $row['EXISTENCIA_ARTICULO'], "minimoArticulo" => $row['MINIMO_ARTICULO'],"costoUnidad" => $row['COSTO_UNIDAD_ARTICULO'], "rubro" => $row['NOMBRE_RUBRO'],"unidad" => $row['DESCRIPCION_UNIDAD']);
 		}
 
-		//print_r($datos);
+		//Devuelve los datos de los articulo para ser procesador por el autocomplete
 		
 		return $datos;
 	}
