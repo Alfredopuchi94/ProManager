@@ -66,15 +66,16 @@ session_start();
 										<form id="formularioEntradaNuevo" action="../config/datos.php" method="post">
 										  <div class="form-row">
 										  	<div class="form-group col-md-3">
-										      <label for="inputState">Rubro</label>
-										      <select name="id_rubro" id="inputState" class="form-control">
-										        <option disable selected>Seleccione Rubro</option>
+										      <label for="rubro">Rubro</label>
+										      <select name="id_rubro" id="rubro" class="form-control" required="">
+										        <option value="" disable selected>Seleccione Rubro</option>
 										       <?php
 										       // Se llena el <optio> de los rubros con la info de la base de datos
+												include '../config/conexion.php';
 
 										        $sql1 = "SELECT * FROM SC_PROVEDURIA.T_RUBROS";
 
-										         $query1=sqlsrv_query($conn,$sql); 
+										         $query1=sqlsrv_query($conn,$sql1); 
 
 													while ($reg1=sqlsrv_fetch_array($query1, SQLSRV_FETCH_ASSOC)) { 
 
@@ -83,15 +84,15 @@ session_start();
 										      </select>
 										    </div>
 										    <div class="form-group col-md-6">
-										      <label for="inputEmail4">Descripcion</label>
-										      <input name="nombre" type="text" class="form-control" id="inputEmail4">
+										      <label for="Descripcion">Descripcion</label>
+										      <input name="nombre" type="text" class="form-control" id="Descripcion" required="">
 										    </div>
 										  </div>
 										  <div class="form-row">
 										  	<div class="form-group col-md-3">
-										      <label for="inputState">Unidad</label>
-										      <select name="id_unidad" id="inputState" class="form-control">
-										        <option disable selected>Seleccione la unidad</option>
+										      <label for="unidad">Unidad</label>
+										      <select name="id_unidad" id="unidad" class="form-control" required="">
+										        <option value="" disable selected>Seleccione la unidad</option>
 										       <?php
 										       // Se llena el <option> de las unidades con la info de la base de datos
 
@@ -106,16 +107,16 @@ session_start();
 										      </select>
 										    </div>
 										    <div class="form-group col-md-3">
-										      <label for="inputCity">Existencia</label>
-										      <input name="existencia" type="text" class="form-control" id="inputCity">
+										      <label for="existencia">Existencia</label>
+										      <input name="existencia" type="number" min="1" class="form-control" id="existencia" required="">
 										    </div>
 										    <div class="form-group col-md-3">
-										      <label for="inputZip">Minimo</label>
-										      <input name="minimo" type="text" class="form-control" id="inputZip">
+										      <label for="minimo">Minimo</label>
+										      <input name="minimo" type="number" min="1" class="form-control" id="minimo" required="">
 										    </div>
 										    <div class="form-group col-md-3">
-										      <label for="inputZip">Costo</label>
-										      <input name="costo" type="text" class="form-control" id="inputZip">
+										      <label for="costo">Costo</label>
+										      <input name="costo" type="number" min="1" step="0.01" class="form-control" id="costo" required="">
 										    </div>
 										    	<input type="hidden" name="id" value="formularioEntradaNuevo">
 										    <button type="submit" class="btn btn-primary d-block m-auto">Agregar artículo</button>
