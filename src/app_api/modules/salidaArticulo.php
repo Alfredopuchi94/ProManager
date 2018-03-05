@@ -69,7 +69,7 @@ session_start();
 										<hr>
 									</div>
 									<div class="col-md-10 offset-md-1 pt-1">
-										<form id="formularioSalidaNuevo" action="../config/datos.php" method="post">
+										<form id="FormularioS" action="agregarSalida.php" method="get">
 										  <div class="row">
 										    <div class=" input-group col-md-3 mb-0 ml-0">
 										      <label class="mr-3">Fecha: </label><br>
