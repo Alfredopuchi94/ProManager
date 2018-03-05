@@ -7,7 +7,6 @@ session_start();
 	<meta charset="UTF-8">
 	<title>Sistema de Proveeduría</title>
 	<link rel="stylesheet" href="../../assets/css/app.css">
-	<link rel="stylesheet" href="../../assets/js/app.js">
 	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../../assets/css/jquery-ui.min.css">
@@ -195,199 +194,63 @@ session_start();
 									</div>
 								</div>
 							</div>
-
-							<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-								b
-							</div>
-
-							<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-								c
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- /*********** MODALS **************/ -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Agregar Proveedor</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form id="formularioProveedor">
+			  <div class="form-group">
+			    <label for="nombreProveedor">Nombre de la empresa</label>
+			    <input type="text" name="nombreProveedor" class="form-control" id="nombreProveedor">
+			  </div>
+			  <div class="form-group">
+			    <label for="actividadProveedor">Actividad de la empresa</label>
+			    <input type="text" name="actividadProveedor" class="form-control" id="actividadProveedor">
+			  </div>
+			  <div class="form-group">
+			    <label for="rifProveedor">RIF de la empresa</label>
+			    <input type="text" name="rifProveedor" class="form-control" id="rifProveedor">
+			  </div>
+			  <div class="form-group">
+			    <label for="nitProveedor">NIT de la empresa</label>
+			    <input type="text" name="nitProveedor" class="form-control" id="nitProveedor">
+			  </div>
+			  <div class="form-group">
+			    <label for="emailProveedor">Email de la empresa</label>
+			    <input type="text" name="emailProveedor" class="form-control" id="emailProveedor">
+			  </div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModalProv">Cerrar</button>
+	        <button type="button" class="btn btn-primary" id="guardarProveedor">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- ///////////////// MODALS ///////////////// -->
 	<script src="../../assets/js/jquery-3.2.1.min.js"></script>
 	<script src="../../assets/js/jquery-ui.min.js"></script>
 	<script src="../../assets/js/bootstrap.js"></script>
+	<script src="../../assets/js/app.js"></script>
 	<script>
 
-		$("#formularioEntradaNuevo").slideUp('fast'); // Esconde el formulario para agregar nuevos productos.
+		$('#exampleModalCenter').modal('show');
 
-		$("#prodNuevo").click(function() { // Muestra el formulario al darle click a Articulo Nuevo
-			if (!$("#option2:checked").val() == true) {
-				$("#formularioEntradaNuevo").slideDown(400);
-			}
-		});
-
-		$("#prodExistente").click(function() { // Esconde el formulario al darle click a Articulo Existente
-			if (!$("#option1:checked").val() == true) {
-				$("#formularioEntradaNuevo").slideUp(400);
-			}
-		});
-
-		/*************** AUTOCOMPLETAR *****************/
-
-        $(function(){
-
-	        $('#buscarProducto').autocomplete({ // Funcion para buscar los articulos en la base de datos
-	            source: 'ajax.php',
-	            select: function(event,ui){
-	                $('#resultados').slideUp('slow',function(){
-	                    $('#resultados').html(
-	                        '<table class="table table-hover table-bordered small">'
-							+'<colgroup> <col class="col-xs-1"> <col class="col-xs-5"><col class="col-xs-2"><col class="col-xs-1"><col class="col-xs-1"><col class="col-xs-2"></colgroup>'
-								  +'<tbody>'
-								 +'<thead>'
-									+'<tr>'
-									  +'<th>Codigo</th>'
-									 +'<th>Rubro</th>'
-									  +'<th>Nombre</th>'
-									  +'<th>Unidad</th>'
-									  +'<th>Existencia</th>'
-									  +'<th>Accion</th>'
-									+'</tr>'
-								  +'</thead>'
-									+'<tr>'
-									  +'<th>'+ui.item.idArticulo+'</th>'
-									  +'<td>'+ui.item.rubro+'</td>'
-									  +'<td>'+ui.item.value+'</td>'
-									  +'<td>'+ui.item.unidad+'</td>'
-									  +'<td id="existenciaArt">'+ui.item.existenciaArticulo+'</td>'
-									  +'<td>'
-									  
-									  +'<a href="javascript:agregarSession()" class="btn btn-success btn-sm" role="button"><span class="fa fa-plus-circle"></span></a>'
-									  +'</td>'
-									+'</tr>'
-								  +'</tbody>'
-								+'</table>'
-	                    );
-	                });
-	                $('#resultados').slideDown('slow');
-	            existencia = ui.item.existenciaArticulo;
-	            id = ui.item.idArticulo;
-	            }
-	        });
-
-	        $('#buscarProveedor').autocomplete({ // Funcion para buscar los proveedores en la base de datos
-	            source: 'ajax2.php',
-	            select: function(event,ui){
-	                $('#proveedor_oculto').val(ui.item.idProveedor);
-	            }
-	        });
-        });
-
-        //////////////////////////// AUTOCOMPLETAR /////////////////////////////////
-
-        /****************************** AGREGAR ARTICULOS A LA SESSION ******************************/
-
-        function agregarSession() {
-        	// if (existencia>0) {
-            	$.ajax({
-	        		url: 'agregarArtSession.php',
-	        		type: 'POST',
-	        		data: "id="+id
-	        	})
-	        	.done(function(data) {
-	        		if (data == "existe") {
-	        			alert("Ya agregaste ese articulo");
-	        		}else{
-	        			$("#contenedorArt").append(data);
-	        		}
-	        	})
-	        	.fail(function() {
-	        		console.log("error");
-	        	})
-	        	.always(function() {
-	        		console.log("complete");
-	        	});
-	        	
-        	// }else{
-        	// 	alert("No hay existencia");
-        	// }
-        }
-
-        ////////////////////////////// AGREGAR ARTICULOS A LA SESSION //////////////////////////////
-
-        /****************************** ENVIAR DATOS DEL FORMULARIO ******************************/
-
-        $("#enviarEntrada").click(function(event) {
-
-        	var arrayArt = new Array();
-			var nuevoArray = new Object();
-
-        	arrayArt["factura"] = $("#nroFactura").val();
-        	arrayArt["idProveedor"] = $("#proveedor_oculto").attr('value');
-        	arrayArt["total"] = $("#totalFactura").val();
-        	arrayArt.cantArt = new Array();
-        	arrayArt.idArt = new Array();
-
-
-
-        	$(".cantArt").each(function(index, el) {
-        		arrayArt.cantArt[index] = $(this).val();
-        	});
-
-        	$(".idDato").each(function(index, el) {
-        		arrayArt.idArt[index] = $(this).text();
-        	});
-
-
-
-			nuevoArray.factura = arrayArt["factura"];
-			nuevoArray.idProveedor = arrayArt["idProveedor"];
-			nuevoArray.total = arrayArt["total"];
-			nuevoArray.cantArt = arrayArt.cantArt;
-			nuevoArray.idArt = arrayArt.idArt;
-			nuevoArray.causaAccion = 2;
-			nuevoArray.tipoAccion = 1;
-
-        	$.ajax({
-        		url: 'agregarEntrada.php',
-        		type: 'POST',
-        		data: nuevoArray,
-        	})
-        	.done(function() {
-        		alert("Entrada agregada.")
-        		location.reload();
-        		console.log("success");
-        		return false;
-        	})
-        	.fail(function() {
-        		console.log("error");
-        	})
-        	//alert(arrayArt.idProveedor);
-        	return false;
-        	
-        });
-
-        ////////////////////////////// ENVIAR DATOS DEL FORMULARIO //////////////////////////////
-
-        /****************************** ELIMINAR ARTICULOS DE LA SESSION ******************************/
-
-        $('.table tbody').on('click','.delete',function(){
-			$(this).closest('tr').remove();
-			
-			var id = $(this).parent("td").parent("tr").children('th').text();
-
-			$.ajax({
-				url: 'eliminarArtSession.php',
-				type: 'POST',
-				data: "id="+id,
-			})
-			.done(function() {
-
-				console.log("success");
-			})
-			.fail(function() {
-				console.log("error");
-			})
-			
-		});
-
-		////////////////////////////// ELIMINAR ARTICULOS DE LA SESSION //////////////////////////////
+		
 	</script>
 </body>
 </html>
