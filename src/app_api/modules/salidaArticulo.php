@@ -7,9 +7,9 @@ session_start();
 	<meta charset="UTF-8">
 	<title>Sistema de Proveeduría</title>
 	<link rel="stylesheet" href="../../assets/css/app.css">
-	<link rel="stylesheet" href="../../assets/js/app.js">
 	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../assets/css/jquery-ui.min.css">
 </head>
 <body>
 	<?php 
@@ -69,7 +69,7 @@ session_start();
 										<hr>
 									</div>
 									<div class="col-md-10 offset-md-1 pt-1">
-										<form>
+										<form id="formularioSalidaNuevo" action="../config/datos.php" method="post">
 										  <div class="row">
 										    <div class=" input-group col-md-3 mb-0 ml-0">
 										      <label class="mr-3">Fecha: </label><br>
@@ -107,6 +107,7 @@ session_start();
 										</div>
 									</div>
 									<div class="col-md-12">
+										<div id="resultados"></div>
 										<table class="table table-hover" style="font-size: 0.9rem;">
 											<thead>
 												<tr>
@@ -120,10 +121,33 @@ session_start();
 													<th scope="col">Total</th>
 												</tr>
 											</thead>
-											<tbody>
-												
+											<tbody id="contenedorArt">
+												<?php 
+													// foreach que recorre la variable de session "articulos" que es donde se guardan los articulos que van siendo agregados a la entrada
+
+													$datos = $_SESSION["articulos"];
+													foreach ($datos as $key => $value) {
+												?>
+												<tr>
+													<th class="idDato" scope="row"><?php echo $value["id"] ?></th>
+													<td><?php echo $value["rubro"] ?></td>
+													<td><?php echo $value["articulo"] ?></td>
+													<td><?php echo $value["unidad"] ?></td>
+													<td><input value="1" min="1" name="valor<?php echo $value["id"] ?>" type="number" class="form-control cantArt"></td>
+													<td>
+														<button type="button" id="edit" class="btn btn-info"><span class="fa fa-pencil"></span></button>
+														<button id="eliminarArt" type="button" class="btn btn-danger delete"><span class="fa fa-trash"></span></button>
+													</td>
+
+													
+
+												</tr>
+												<?php
+													} // Termina el foreach donde se muestran los articulos que van a ser agregados a la entrada
+												?>
 											</tbody>
 										</table>
+										<button id="enviarSalida" type="submit" class="btn btn-primary d-block m-auto">Registrar Salida</button>
 										</form>
 									</div>
 								</div>
@@ -143,7 +167,9 @@ session_start();
 		</div>
 	</div>
 	<script src="../../assets/js/jquery-3.2.1.min.js"></script>
+	<script src="../../assets/js/jquery-ui.min.js"></script>
 	<script src="../../assets/js/bootstrap.js"></script>
+	<script src="../../assets/js/app.js"></script>
 	<script>
 		var aux = true;
 

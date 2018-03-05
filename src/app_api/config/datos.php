@@ -24,6 +24,9 @@
 			echo "error";
 		}
 
+	}else if ($_REQUEST['id'] == "formularioSalidaNuevo") {
+		
+		
 	}
 
  ?>
