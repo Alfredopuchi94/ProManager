@@ -26,7 +26,7 @@
 					    <a class="nav-link colorLetraMenu" href="buscar.php"><span class="fa fa-search colIconMenu"></span> Articulos</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-arrow-down colIconMenu"></span> Entrada</a>
+					    <a class="nav-link colorLetraMenu" href="entradaArticulo.php"><span class="fa fa-arrow-down colIconMenu"></span> Entrada</a>
 					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="salidaArticulo.php"><span class="fa fa-arrow-up colIconMenu"></span> Salida</a>

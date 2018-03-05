@@ -54,3 +54,6 @@ body {
     text-align: center;
     color: white;
 }
+.ui-autocomplete{
+	z-index: 1050 !important;
+}

@@ -14,13 +14,14 @@ class Articulos{
 				WHERE NOMBRE_ARTICULO LIKE '%$terminoArticulo%'";
 		
 		$res = sqlsrv_query($conn,$sql);
-		
+
+
 		while($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)){
 			$datos[] = array("idArticulo" => $row['ID_ARTICULO'],"value" => $row['NOMBRE_ARTICULO'],"existenciaArticulo" => $row['EXISTENCIA_ARTICULO'], "minimoArticulo" => $row['MINIMO_ARTICULO'],"costoUnidad" => $row['COSTO_UNIDAD_ARTICULO'], "rubro" => $row['NOMBRE_RUBRO'],"unidad" => $row['DESCRIPCION_UNIDAD']);
 		}
 
 		//Devuelve los datos de los articulo para ser procesador por el autocomplete
-		
 		return $datos;
+
 	}
 }
