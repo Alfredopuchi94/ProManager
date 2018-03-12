@@ -24,6 +24,7 @@
         $_SESSION['idDependencia'] = $reg["ID_DEPENDENCIA"];
         $_SESSION['ubiAdministrativa'] = $reg["ID_UBICACION_ADMINISTRATIVA"];
         $_SESSION["articulos"] = array();
+        $_SESSION["salida"] = array();
 
         //print_r($_SESSION);
 

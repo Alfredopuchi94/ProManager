@@ -69,7 +69,7 @@ session_start();
 										<hr>
 									</div>
 									<div class="col-md-10 offset-md-1 pt-1">
-										<form id="FormularioS" action="agregarSalida.php" method="get">
+										<form id="FormularioS" action="agregarSalida.php" method="get" name="salida">
 										  <div class="row">
 										    <div class=" input-group col-md-3 mb-0 ml-0">
 										      <label class="mr-3">Fecha: </label><br>
@@ -102,7 +102,7 @@ session_start();
 												<div class="input-group-prepend">
 													<span class="input-group-text" id="basic-addon3">Buscar</span> 
 												</div>
-												<input id="buscarProducto" type="text" class="form-control">
+												<input id="buscarProductoSalida" type="text" class="form-control">
 											</div>
 										</div>
 									</div>
@@ -119,21 +119,25 @@ session_start();
 													<th scope="col">Restante</th>
 													<th scope="col">Precio U</th>
 													<th scope="col">Total</th>
+													<th scope="col">Accion</th>
 												</tr>
 											</thead>
 											<tbody id="contenedorArt">
 												<?php 
 													// foreach que recorre la variable de session "articulos" que es donde se guardan los articulos que van siendo agregados a la entrada
 
-													$datos = $_SESSION["articulos"];
+													$datos = $_SESSION["salida"];
 													foreach ($datos as $key => $value) {
 												?>
 												<tr>
-													<th class="idDato" scope="row"><?php echo $value["id"] ?></th>
-													<td><?php echo $value["rubro"] ?></td>
 													<td><?php echo $value["articulo"] ?></td>
 													<td><?php echo $value["unidad"] ?></td>
-													<td><input value="1" min="1" name="valor<?php echo $value["id"] ?>" type="number" class="form-control cantArt"></td>
+													<td><input value="1" min="1" max="<?php echo $value["restante"] ?>" name="valor" type="number" class="form-control cantArt" onKeyUp="Suma()"></td>
+													<td><?php echo $value["minimo"] ?></td>
+													<td><?php echo $value["existencia"] ?></td>
+													<td><?php echo $value["restante"] ?></td>
+													<td><?php echo $value["precio"] ?></td>
+													<td><?php echo $value["precio"] ?></td>
 													<td>
 														<button type="button" id="edit" class="btn btn-info"><span class="fa fa-pencil"></span></button>
 														<button id="eliminarArt" type="button" class="btn btn-danger delete"><span class="fa fa-trash"></span></button>
@@ -187,6 +191,18 @@ session_start();
 			}
 		});
 
+	</script>
+
+	<script>
+		function Suma(){
+			var valor = document.salida.valor.value;
+			var precio = document.salida.precio.value;
+			try {
+				valor = (isNaN(parseInt(valor)))? : parseInt(valor);
+				precio = (isNaN(parseInt(precio)))? : parseInt(precio);
+				document.salida.total.value = valor * precio;
+			} catch(e) {}
+		}
 	</script>
 </body>
 </html>

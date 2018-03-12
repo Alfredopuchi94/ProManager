@@ -4,9 +4,8 @@
 
 	// Se agarran los datos del formulario
 
-	$nroFact = $_POST["factura"];
-	$idPro = $_POST["idProveedor"];
-	$total = $_POST["total"];
+
+	
 	$idArt = $_POST["idArt"];
 	$cantArt = $_POST["cantArt"];
 	$causaAccion = $_POST["causaAccion"];
@@ -98,6 +97,6 @@
 	}
 
 
-$_SESSION["articulos"] = array();
+$_SESSION["salida"] = array();
 
 ?>
