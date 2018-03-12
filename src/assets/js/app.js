@@ -117,11 +117,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	        $('#actividadProveedor').autocomplete({ // Funcion para buscar los proveedores en la base de datos
 	            source: 'ajaxActividadProveedor.php',
 	            select: function(event,ui){
-	            	if (ui.item.value === 'No existe el proveedor') {
-	            		$('#exampleModalCenter').modal('show'); // SI NO ENCUENTRA PROVEEDORES ABRE EL MODAL PARA CREAR UNO NUEVO
-	            	} else {
-	               		$('#proveedor_oculto').val(ui.item.idProveedor); // GUARDA EL ID DEL PROVEEDOR EN EL CAMPO OCULTO
-	            	}
+	            	$('#actOculto').val(ui.item.idActividad);
 	            }
 	        });
         });
@@ -245,9 +241,10 @@ $('#exampleModal').on('show.bs.modal', function (event) {
         	var arrayArt = new Array();
 			var nuevoArray = new Object();
 
-        	arrayArt["factura"] = $("#nroFactura").val();
-        	arrayArt["idProveedor"] = $("#proveedor_oculto").attr('value');
-        	arrayArt["total"] = $("#totalFactura").val();
+			arrayArt["dependencia"] = $('#depe').val();
+        	//arrayArt["factura"] = $("#nroFactura").val();
+        	//arrayArt["idProveedor"] = $("#proveedor_oculto").attr('value');
+        	//arrayArt["total"] = $("#totalFactura").val();
         	arrayArt.cantArt = new Array();
         	arrayArt.idArt = new Array();
 
@@ -262,14 +259,14 @@ $('#exampleModal').on('show.bs.modal', function (event) {
         	});
 
 
-
-			nuevoArray.factura = arrayArt["factura"];
-			nuevoArray.idProveedor = arrayArt["idProveedor"];
-			nuevoArray.total = arrayArt["total"];
+        	nuevoArray.dependencia = arrayArt["dependencia"];
+			// nuevoArray.factura = arrayArt["factura"];
+			// nuevoArray.idProveedor = arrayArt["idProveedor"];
+			// nuevoArray.total = arrayArt["total"];
 			nuevoArray.cantArt = arrayArt.cantArt;
 			nuevoArray.idArt = arrayArt.idArt;
 			nuevoArray.causaAccion = 2;
-			nuevoArray.tipoAccion = 1;
+			nuevoArray.tipoAccion = 2;
 
         	$.ajax({
         		url: 'agregarSalida.php',
@@ -320,7 +317,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
 		$('#guardarProveedor').click(function() {
 			var str = $( "form#formularioProveedor" ).serialize();
-    		// alert(str);
+    		//alert(str);
 			
 			$.ajax({
 				url: 'registrarProveedor.php',
@@ -328,6 +325,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 				data: str,
 			})
 			.done(function() {
+				alert("Proveedor agregado");
+				//location.reload();
 				console.log("success");
 			})
 			.fail(function() {

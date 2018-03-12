@@ -2,7 +2,7 @@
 
 	include '../config/conexion.php';
 
-	print_r($_POST);
+	//print_r($_POST);
 
 	$bandera = false;
 
@@ -11,8 +11,6 @@
 			FROM SC_PROVEDURIA.T_ARTICULOS  
 			INNER JOIN SC_PROVEDURIA.T_UNIDADES
 			ON T_ARTICULOS.ID_UNIDAD = T_UNIDADES.ID_UNIDAD
-			INNER JOIN SC_PROVEDURIA.T_ACCIONES_ARTICULO
-			ON T_ACCIONES_ARTICULO.ID_ARTICULO = T_ARTICULOS.ID_ARTICULO
 			WHERE T_ARTICULOS.ID_ARTICULO = $id";
 
 	//echo "$sql";
@@ -55,7 +53,7 @@
 		echo '<tr>
 				<td>'.$nuevo["articulo"].'</td>
 				<td>'.$nuevo["unidad"].'</td>
-				<td><input value="1" min="1" max="<?php echo $value["restante"] ?>" name="valor" type="number" class="form-control cantArt"></td>
+				<td><input value="1" min="1" max="'.$nuevo["restante"].'" name="valor" type="number" class="form-control cantArt"></td>
 				<td>'.$nuevo["minimo"].'</td>
 				<td>'.$nuevo["existencia"].'</td>
 				<td>'.$nuevo["restante"].'</td>

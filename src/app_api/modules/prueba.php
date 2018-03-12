@@ -1,13 +1,11 @@
 <?php
-class Actividad{
-	public function buscarActividad($terminoArticulo){
 		include '../config/conexion.php';
 
 		$datos = array();
 		
 		$sql = "SELECT *
 				FROM SC_PROVEEDORES.T_ACTIVIDADES 
-				WHERE DESCRIPCION LIKE '%$terminoArticulo%'";
+				WHERE DESCRIPCION LIKE '%cas%'";
 
 		// $sql = "SELECT * FROM SC_PROVEEDORES.T_ACTIVIDADES WHERE T_ACTIVIDADES.DESCRIPCION LIKE '%art%'";
 		
@@ -19,16 +17,13 @@ class Actividad{
 		// 	$datos[] = array("idActividad" => $row['ID_ACTIVIDAD'],"value" => $row['DESCRIPCION']);
 		// }
 
-		while(sqlsrv_fetch($res)){
+		while($row = sqlsrv_fetch($res)){
 			// print_r($row);
-			$datos[] = array("idActividad" => sqlsrv_get_field($res,0,SQLSRV_PHPTYPE_STRING('UTF-8')),
-								"value" => sqlsrv_get_field($res,1,SQLSRV_PHPTYPE_STRING('UTF-8')));
+			$datos[] = array("value" => sqlsrv_get_field($res,2,SQLSRV_PHPTYPE_STRING('UTF-8')));
 		}
 
-		//print_r($datos);
+
+		print_r($datos);
 		//Devuelve los datos de los articulo para ser procesador por el autocomplete
-
+		
 		return $datos;
-
-	}
-}

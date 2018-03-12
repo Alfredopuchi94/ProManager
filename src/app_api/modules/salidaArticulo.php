@@ -127,6 +127,7 @@ session_start();
 													// foreach que recorre la variable de session "articulos" que es donde se guardan los articulos que van siendo agregados a la entrada
 
 													$datos = $_SESSION["salida"];
+													//print_r($datos);
 													foreach ($datos as $key => $value) {
 												?>
 												<tr>

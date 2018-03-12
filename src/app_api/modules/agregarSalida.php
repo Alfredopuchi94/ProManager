@@ -5,17 +5,13 @@
 	// Se agarran los datos del formulario
 
 
-	
-	$idArt = $_POST["idArt"];
-	$cantArt = $_POST["cantArt"];
-	$causaAccion = $_POST["causaAccion"];
-	$tipoAccion = $_POST["tipoAccion"];
+	print_r($_POST);
 
 //**************** T_ACCIONES **********************/
 
 	$sql = "SELECT ISNULL(MAX(NUMERO_ACCION),0) AS UltimaAccion FROM SC_PROVEDURIA.T_ACCIONES WHERE ID_TIPO_ACCION = 2";
 
-	$res = sqlsrv_query($conn,$sql);
+	//$res = sqlsrv_query($conn,$sql);
 
 	$row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC);
 
@@ -41,20 +37,23 @@
 					$tipoAccion, 
 					".$_SESSION["idDependencia"].", 
 					".$_SESSION["ubiAdministrativa"].", 
-					'$nroFact', 
-					'$total', 
 					NULL, 
 					NULL, 
-					$idPro, 
+					NULL, 
+					NULL, 
+					NULL, 
 					".$_SESSION["idUsuario"].", 
 					".$_SESSION["idDependencia"].", 
 					".$_SESSION["ubiAdministrativa"].");";
 
-	$res = sqlsrv_query($conn,$sql);
+	//$res = sqlsrv_query($conn,$sql);
 
 
 //**************** T_ACCION_ARTICULO
 // Tanto array donde vienen los ids como donde vienen las cantidades se recorren con un foreach
+	
+
+
 	foreach ($idArt as $key1 => $value1) {
 		foreach ($cantArt as $key => $value) {
 			// Cuando $key == $key1 es por el indice de los 2 array son iguales por lo que se trata del mismo producto

@@ -180,9 +180,6 @@ session_start();
 														<button type="button" id="edit" class="btn btn-info"><span class="fa fa-pencil"></span></button>
 														<button id="eliminarArt" type="button" class="btn btn-danger delete"><span class="fa fa-trash"></span></button>
 													</td>
-
-													
-
 												</tr>
 												<?php
 													} // Termina el foreach donde se muestran los articulos que van a ser agregados a la entrada
@@ -219,6 +216,7 @@ session_start();
 			  <div class="form-group">
 			    <label for="actividadProveedor">Actividad de la empresa</label>
 			    <input type="text" name="actividadProveedor" class="form-control" id="actividadProveedor">
+			    <input type="hidden" value="0" id="actOculto" name="actividadOculto">
 			  </div>
 			  <div class="form-group">
 			    <label for="rifProveedor">RIF de la empresa</label>
@@ -248,9 +246,9 @@ session_start();
 	<script src="../../assets/js/app.js"></script>
 	<script>
 
-		$('#exampleModalCenter').modal('show');
-
 		
+
+
 	</script>
 </body>
 </html>
