@@ -84,7 +84,7 @@
 				//Se actualiza la cantidad del producto por la nueva
 
 				$sql = "UPDATE SC_PROVEDURIA.T_ARTICULOS
-						SET EXISTENCIA_ARTICULO = EXISTENCIA_ARTICULO + $value
+						SET EXISTENCIA_ARTICULO = EXISTENCIA_ARTICULO - $value
 						WHERE T_ARTICULOS.ID_ARTICULO = $value1";
 
 				$res = sqlsrv_query($conn,$sql);

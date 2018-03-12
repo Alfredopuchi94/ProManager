@@ -69,7 +69,7 @@ session_start();
 										<hr>
 									</div>
 									<div class="col-md-10 offset-md-1 pt-1">
-										<form id="FormularioS" action="agregarSalida.php" method="get" name="salida">
+										<form id="FormularioS" action="agregarSalida.php" method="get">
 										  <div class="row">
 										    <div class=" input-group col-md-3 mb-0 ml-0">
 										      <label class="mr-3">Fecha: </label><br>
@@ -80,7 +80,7 @@ session_start();
 										  	<div class="row">
 											  	<div class="form-group col-md-11 ml-5">
 											      <p class="text-center" for="inputState">Dependencia</p>
-											      <select id="inputState" class="form-control" width="100%">
+											      <select id="depe" class="form-control" width="100%">
 											        <option disable selected>Seleccione la dependencia</option>
 											       <?php
 											       // Se llena el <optio> de los rubros con la info de la base de datos
