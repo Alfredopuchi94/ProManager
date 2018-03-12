@@ -241,7 +241,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
         	var arrayArt = new Array();
 			var nuevoArray = new Object();
 
-			arrayArt["dependencia"] = $('#depe').val();
+			arrayArt["dependencia"] = $('#dependencia').val();
         	//arrayArt["factura"] = $("#nroFactura").val();
         	//arrayArt["idProveedor"] = $("#proveedor_oculto").attr('value');
         	//arrayArt["total"] = $("#totalFactura").val();

@@ -5,7 +5,12 @@
 	// Se agarran los datos del formulario
 
 
-	print_r($_POST);
+	// print_r($_POST);
+	$idArt = $_POST["idArt"];
+	$cantArt = $_POST["cantArt"];
+	$causaAccion = $_POST["causaAccion"];
+	$tipoAccion = $_POST["tipoAccion"];
+	$dependencia = $_POST['dependencia'];
 
 //**************** T_ACCIONES **********************/
 
@@ -35,7 +40,7 @@
 					".($row['UltimaAccion']+1).", 
 					$causaAccion,
 					$tipoAccion, 
-					".$_SESSION["idDependencia"].", 
+					$dependencia, 
 					".$_SESSION["ubiAdministrativa"].", 
 					NULL, 
 					NULL, 
@@ -46,7 +51,7 @@
 					".$_SESSION["idDependencia"].", 
 					".$_SESSION["ubiAdministrativa"].");";
 
-	//$res = sqlsrv_query($conn,$sql);
+	$res = sqlsrv_query($conn,$sql);
 
 
 //**************** T_ACCION_ARTICULO
