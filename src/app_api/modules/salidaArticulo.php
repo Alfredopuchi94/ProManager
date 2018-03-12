@@ -96,6 +96,26 @@ session_start();
 											      </select>
 											    </div>
 										    </div>
+
+										    <div class="row">
+											  	<div class="form-group col-md-11 ml-5">
+											      <p class="text-center" for="inputState">Ubicacion Administrativa</p>
+											      <select id="ubicacion" class="form-control" width="100%">
+											        <option disable selected>Seleccione la Ubicacion Administrativa</option>
+											       <?php
+											       // Se llena el <optio> de los rubros con la info de la base de datos
+
+											        $sql = "SELECT * FROM SC_COMUN.T_UBICACIONES_ADMINISTRATIVAS";
+
+											         $query=sqlsrv_query($conn,$sql); 
+
+														while ($reg=sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { 
+
+				  										echo '<option value="'.$reg["ID_UBICACION_ADMINISTRATIVA"].'">'.$reg['DESCRIPCION'].'</option>'; 
+													} ?>
+											      </select>
+											    </div>
+										    </div>
 										  
 										  <div class="input-group mx-auto col-md-8 mb-3">
 											<div class="input-group mb-3">

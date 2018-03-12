@@ -242,6 +242,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			var nuevoArray = new Object();
 
 			arrayArt["dependencia"] = $('#dependencia').val();
+			arrayArt["ubicacion"] = $('#ubicacion').val();
         	//arrayArt["factura"] = $("#nroFactura").val();
         	//arrayArt["idProveedor"] = $("#proveedor_oculto").attr('value');
         	//arrayArt["total"] = $("#totalFactura").val();
@@ -260,6 +261,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
 
         	nuevoArray.dependencia = arrayArt["dependencia"];
+        	nuevoArray.ubicacion = arrayArt["ubicacion"];
 			// nuevoArray.factura = arrayArt["factura"];
 			// nuevoArray.idProveedor = arrayArt["idProveedor"];
 			// nuevoArray.total = arrayArt["total"];

@@ -11,6 +11,7 @@
 	$causaAccion = $_POST["causaAccion"];
 	$tipoAccion = $_POST["tipoAccion"];
 	$dependencia = $_POST['dependencia'];
+	$ubicacion = $_POST['ubicacion'];
 
 //**************** T_ACCIONES **********************/
 
@@ -41,7 +42,7 @@
 					$causaAccion,
 					$tipoAccion, 
 					$dependencia, 
-					".$_SESSION["ubiAdministrativa"].", 
+					$ubicacion, 
 					NULL, 
 					NULL, 
 					NULL, 
