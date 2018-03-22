@@ -53,12 +53,12 @@
 		echo '<tr>
 				<td>'.$nuevo["articulo"].'</td>
 				<td>'.$nuevo["unidad"].'</td>
-				<td><input value="1" min="1" max="'.$nuevo["restante"].'" name="valor" type="number" class="form-control cantArt"></td>
+				<td><input id="valor" value="1" min="1" max="'.$nuevo["restante"].'" name="valor" type="number" class="form-control cantArt"></td>
 				<td>'.$nuevo["minimo"].'</td>
 				<td>'.$nuevo["existencia"].'</td>
 				<td>'.$nuevo["restante"].'</td>
-				<td>'.$nuevo["precio"].'</td>
-				<td>'.$nuevo["precio"].'</td>
+				<td><input class="form-control" id="precio" type="number" name="precio" value="'.$nuevo["precio"].'" disabled></td>
+				<td><div id="total"></div></td>
 				<td>
 				<button type="button" id="edit" class="btn btn-info"><span class="fa fa-pencil"></span></button>
 				<button type="button" class="btn btn-danger delete"><span class="fa fa-trash"></span></button>

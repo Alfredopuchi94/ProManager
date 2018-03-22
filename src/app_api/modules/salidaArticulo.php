@@ -34,6 +34,9 @@ session_start();
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-arrow-up colIconMenu"></span> Salida</a>
 					  </li>
+					   <li class="nav-item">
+					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-retweet colIconMenu"></span> Devoluciones</a>
+					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-file-text colIconMenu"></span> Reportes</a>
 					  </li>
@@ -69,7 +72,7 @@ session_start();
 										<hr>
 									</div>
 									<div class="col-md-10 offset-md-1 pt-1">
-										<form id="FormularioS" action="agregarSalida.php" method="get">
+										<form id="FormularioS" name="FormularioS" action="agregarSalida.php" method="get">
 										  <div class="row">
 										    <div class=" input-group col-md-3 mb-0 ml-0">
 										      <label class="mr-3">Fecha: </label><br>
@@ -142,7 +145,7 @@ session_start();
 													<th scope="col">Accion</th>
 												</tr>
 											</thead>
-											<tbody id="contenedorArt">
+											<tbody id="contenedorArt" class="contenidosum">
 												<?php 
 													// foreach que recorre la variable de session "articulos" que es donde se guardan los articulos que van siendo agregados a la entrada
 
@@ -153,12 +156,12 @@ session_start();
 												<tr>
 													<td><?php echo $value["articulo"] ?></td>
 													<td><?php echo $value["unidad"] ?></td>
-													<td><input value="1" min="1" max="<?php echo $value["restante"] ?>" name="valor" type="number" class="form-control cantArt" onKeyUp="Suma()"></td>
+													<td><input id="valor" value="1" min="1" max="<?php echo $value["restante"] ?>" name="valor" type="number" class="form-control cantArt"></td>
 													<td><?php echo $value["minimo"] ?></td>
 													<td><?php echo $value["existencia"] ?></td>
 													<td><?php echo $value["restante"] ?></td>
-													<td><?php echo $value["precio"] ?></td>
-													<td><?php echo $value["precio"] ?></td>
+													<td><input id="precio" class="form-control" type="number" name="precio" value="<?php echo $value["precio"] ?>" disabled></td>
+													<td><div id="total"></div></td>
 													<td>
 														<button type="button" id="edit" class="btn btn-info"><span class="fa fa-pencil"></span></button>
 														<button id="eliminarArt" type="button" class="btn btn-danger delete"><span class="fa fa-trash"></span></button>
@@ -213,17 +216,25 @@ session_start();
 		});
 
 	</script>
+		
+	<script type="text/javascript">
+			window.onload =function(){
 
-	<script>
-		function Suma(){
-			var valor = document.salida.valor.value;
-			var precio = document.salida.precio.value;
-			try {
-				valor = (isNaN(parseInt(valor)))? : parseInt(valor);
-				precio = (isNaN(parseInt(precio)))? : parseInt(precio);
-				document.salida.total.value = valor * precio;
-			} catch(e) {}
-		}
+			// 	 document.getElementById('valor').onkeyup = function(){
+			// 		var input = document.getElementById('valor').value;
+			// 		document.getElementById('total').innerHTML = parseInt(input) * document.getElementsByName('precio')
+			// 	}
+			
+				$('#valor').change(function() {
+					var num1 = parseInt(($(this).val()));
+					var num2 = parseInt($('#precio').val());
+					var result = (num1*num2);
+					document.getElementById('total').innerHTML = parseInt(result);
+					// alert(num1*num2);
+
+				});
+
+			}	
 	</script>
 </body>
 </html>

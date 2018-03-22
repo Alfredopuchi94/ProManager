@@ -1,3 +1,6 @@
+<?php // Se para la variable de session para que pueda ser utilizada
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +10,13 @@
 	<link rel="stylesheet" href="../../assets/js/app.js">
 	<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../assets/css/datetable.css">
 </head>
 <body>
+	<?php 
+	include "../config/conexion.php";
+
+	 ?>
 	<nav class="navbar navbar-primary sticky-top bgnav justify-content-center">
 		<p class="mb-0 title-5" style="color: white;">Sistema de Proveduria</p>
 	</nav>
@@ -28,6 +36,9 @@
 					    <a class="nav-link colorLetraMenu" href="salidaArticulo.php"><span class="fa fa-arrow-up colIconMenu"></span> Salida</a>
 					  </li>
 					  <li class="nav-item">
+					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-retweet colIconMenu"></span> Devoluciones</a>
+					  </li>
+					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-file-text colIconMenu"></span> Reportes</a>
 					  </li>
 					  <li class="nav-item">
@@ -41,20 +52,6 @@
 			</nav>
 			<div class="col-md-10 my-3">
 				<div class="row">
-					<div class="col-md-10 offset-md-1">
-						<ul class="nav nav-tabs" id="myTab" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Buscar articulos</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Agregar Articulo</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">otra cosa</a>
-							</li>
-						</ul>
-					</div>
-
 					<div class="col-md-12">
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -63,119 +60,46 @@
 										<div class="col-md-12 pt-4">
 											<h3 class="w-100 text-center">Buscar articulo</h3>
 											<hr>
-										</div>
-										<div class="input-group mb-3 pt-2">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon3">Buscar</span>
-											</div>
-											<input type="text" class="form-control">
-											<div class="input-group-append">
-												<button class="btn btn-outline-secondary" type="button">Ir!</button>
-											</div>
-										</div>
+										</div><br>
 									</div>
 									<div class="col-md-12">
-										<table class="table table-hover">
+										<table class="table table-hover table-striped table-bordered" id="myTable">
 											<thead>
 												<tr>
-													<th scope="col" width="10%">Código</th>
+													<th scope="col" width="10%">Id</th>
 													<th scope="col" width="30%">Rubro</th>
 													<th scope="col" width="35%">Nombre</th>
 													<th scope="col" width="15%">Unidad</th>
-													<th scope="col" width="10%">Cantidad</th>
+													<th scope="col" width="10%">Existencia</th>
+													<th scope="col" width="10%">Minimo</th>
+													<th scope="col" width="10%">Costo U.</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">MO53</th>
-													<td>MATERIAL DE OFICINA</td>
-													<td>RESMA DE PAPEL OFICIO</td>
-													<td>UNIDAD</td>
-													<td><input type="number" class="form-control"></td>
-												</tr>
-												<tr>
-													<th scope="row">CO31</th>
-													<td>INSUMOS DE COMPUTACION</td>
-													<td>REGULADOR/VOLTAJE 600 ZUHIPOINT</td>
-													<td>UNIDAD</td>
-													<td><input type="number" class="form-control"></td>
-												</tr>
-												<tr>
-													<th scope="row">EL7</th>
-													<td>ELECTRICIDAD</td>
-													<td>LAMPARA DE 32W</td>
-													<td>GALON X 4 LTS.</td>
-													<td><input type="number" class="form-control"></td>
-												</tr>
+
+											<tbody >
+												<?php $sql ="SELECT T_ARTICULOS.ID_ARTICULO, T_RUBROS.NOMBRE_RUBRO, T_ARTICULOS.NOMBRE_ARTICULO, T_UNIDADES.DESCRIPCION_UNIDAD, EXISTENCIA_ARTICULO, MINIMO_ARTICULO, COSTO_UNIDAD_ARTICULO
+															 FROM SC_PROVEDURIA.T_ARTICULOS
+															 INNER JOIN SC_PROVEDURIA.T_RUBROS ON T_ARTICULOS.ID_RUBRO = T_RUBROS.ID_RUBRO
+															 INNER JOIN SC_PROVEDURIA.T_UNIDADES ON T_ARTICULOS.ID_UNIDAD = T_UNIDADES.ID_UNIDAD
+															 WHERE T_ARTICULOS.ID_ARTICULO = ID_ARTICULO";
+														$query =sqlsrv_query($conn,$sql); 
+														while ($filas=sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
+															echo "<tr>";
+																echo "<td>"; echo $filas['ID_ARTICULO']; "</td>";
+																echo "<td>"; echo $filas['NOMBRE_RUBRO']; "</td>";
+																echo "<td>"; echo $filas['NOMBRE_ARTICULO']; "</td>";
+																echo "<td>"; echo $filas['DESCRIPCION_UNIDAD']; "</td>";
+																echo "<td>"; echo $filas['EXISTENCIA_ARTICULO']; "</td>";
+																echo "<td>"; echo $filas['MINIMO_ARTICULO']; "</td>";
+																echo "<td>"; echo $filas['COSTO_UNIDAD_ARTICULO']; "</td>";
+															echo "</tr>";
+														}
+
+														?>
 											</tbody>
-										</table>
+										</table><br> <br> <br>
 									</div>
 								</div>
-							</div>
-
-							<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-								<div class="row">
-									<div class="col-md-12 pt-4">
-										<form>
-										  <div class="form-row">
-										    <div class="form-group col-md-2">
-										      <label for="inputEmail4">Codigo</label>
-										      <input type="email" class="form-control" id="inputEmail4" disabled="">
-										    </div>
-										    <div class="form-group col-md-4">
-										      <label for="inputState">Rubro</label>
-										      <select id="inputState" class="form-control">
-										        <option selected>ARTICULOS DE LIMPIEZA</option>
-										        <option>CARATULAS Y FICHAS</option>
-										        <option>ELECTRICIDAD</option>
-										        <option>FERRETERIA</option>
-										        <option>INSUMOS DE COMPUTACION</option>
-										      </select>
-										    </div>
-										    <div class="form-group col-md-6">
-										      <label for="inputEmail4">Nombre</label>
-										      <input type="email" class="form-control" id="inputEmail4">
-										    </div>
-										  </div>
-										  <div class="form-row">
-										  	<div class="form-group col-md-3">
-										      <label for="inputState">Unidad</label>
-										      <select id="inputState" class="form-control">
-										        <option selected>UNIDAD</option>
-										        <option>CAJA</option>
-										        <option>BOLSA</option>
-										        <option>METRO</option>
-										      </select>
-										    </div>
-										    <div class="form-group col-md-3">
-										      <label for="inputCity">Existencia</label>
-										      <input type="text" class="form-control" id="inputCity">
-										    </div>
-										    <div class="form-group col-md-3">
-										      <label for="inputZip">Minimo</label>
-										      <input type="text" class="form-control" id="inputZip">
-										    </div>
-										    <div class="form-group col-md-3">
-										      <label for="inputZip">Costo</label>
-										      <input type="text" class="form-control" id="inputZip">
-										    </div>
-										  </div>
-										  <div class="form-group">
-										    <div class="form-check">
-										      <input class="form-check-input" type="checkbox" id="gridCheck">
-										      <label class="form-check-label" for="gridCheck">
-										        Check me out
-										      </label>
-										    </div>
-										  </div>
-										  <button type="submit" class="btn btn-primary">Sign in</button>
-										</form>
-									</div>
-								</div>
-							</div>
-
-							<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-								c
 							</div>
 						</div>						
 					</div>
@@ -184,6 +108,15 @@
 		</div>
 	</div>
 	<script src="../../assets/js/jquery-3.2.1.min.js"></script>
+	<script src="../../assets/js/jquery-ui.min.js"></script>
 	<script src="../../assets/js/bootstrap.js"></script>
+	<script src="../../assets/js/app.js"></script>
+	<script src="../../assets/js/datetable1.js"></script>
+	<script src="../../assets/js/datetable2.js"></script>
+	<script>
+		$(document).ready( function () {
+    		$('#myTable').DataTable();
+			} );
+	</script>
 </body>
 </html>

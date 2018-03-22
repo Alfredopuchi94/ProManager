@@ -31,6 +31,9 @@
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="salidaArticulo.php"><span class="fa fa-arrow-up colIconMenu"></span> Salida</a>
 					  </li>
+					   <li class="nav-item">
+					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-retweet colIconMenu"></span> Devoluciones</a>
+					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link colorLetraMenu" href="#"><span class="fa fa-file-text colIconMenu"></span> Reportes</a>
 					  </li>
